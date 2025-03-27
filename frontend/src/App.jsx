@@ -11,6 +11,7 @@ import Checkout from "./components/Cart/Checkout";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
 import MyOrdersPage from "./pages/MyOrdersPage";
+import AdminLayout from "./components/Admin/AdminLayout";
 
 
 const App = () => {
@@ -31,6 +32,8 @@ const App = () => {
           <Route path="my-orders" element={<MyOrdersPage />} />
         </Route>
         <Route>{/* Admin Layout */}</Route>
+        <Route path="/admin" element={<AdminLayout />} />
+        
       </Routes>
     </BrowserRouter>
   );
