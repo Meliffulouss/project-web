@@ -25,6 +25,9 @@ const CollectionPage = () => {
         };
     }, []);
 
+
+    
+
     // ✅ Đưa useEffect vào đúng phạm vi function
     useEffect(() => {
         setTimeout(() => {
