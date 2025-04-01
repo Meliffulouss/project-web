@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const ProductManagement = () => {
     const products = [
@@ -6,9 +7,15 @@ const ProductManagement = () => {
             _id: 123123,
             name: "Shirt",
             price: 110,
-            sku: "123123213",
+            sku: "12313323213",
         },
     ];
+
+    const handleDelete = (id) => {
+        if (window.confirm("Are you sure you want to delete the Product?")) {
+            console.log("Delete Product with id:", id);
+        }
+    };
 
     return (
         <div className="max-w-7xl mx-auto p-6">
@@ -35,11 +42,25 @@ const ProductManagement = () => {
                                     </td>
                                     <td className="p-4">${product.price}</td>
                                     <td className="p-4">{product.sku}</td>
-                                    <td className="p-4"></td>
+                                    <td className="p-4">
+                                        <Link
+                                            to={`/admin/products/${product._id}/edit`}
+                                            className="bg-yellow-500 text-white px-2 py-1 rounded mr-2 hover:bg-yellow-600"
+                                        >
+                                            Edit
+                                        </Link>
+                                        <button onClick={() => handleDelete(product._id)} className='bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600'>
+                                            Delete
+                                        </button>
+                                    </td>
                                 </tr>
                             ))
                         ) : (
-                            <tr></tr>
+                            <tr>
+                                <td colSpan={4} className="p-4 text-center text-gray-500">
+                                    No Products found.
+                                </td>
+                            </tr>
                         )}
                     </tbody>
                 </table>
