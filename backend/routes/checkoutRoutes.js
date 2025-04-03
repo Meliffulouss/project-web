@@ -5,12 +5,12 @@ const Product = require("../models/Product");
 const Order = require("../models/Order");
 const { protect } = require("../middleware/authMiddleware");
 
-const router = express.Router()
+const router = express.Router();
 
 // @route POST /api/checkout
 // @desc Create a new checkout session
 // @access Private
-route.post("/", protect, async (req, res) => {
+router.post("/", protect, async (req, res) => {
     const { checkoutItems, shippingAddress, paymentMethod, totalPrice } = req.body;
 
     if (!checkoutItems || checkoutItems.length === 0) {
@@ -81,7 +81,7 @@ router.post("/:id/finalize", protect, async (req, res) => {
             // Create final order based on the checkout details
             const finalOrder = await Order.create({
                 user: checkout.user,
-                orderItems: checkout.orderItems,
+                orderItems: checkout.checkoutItems,
                 shippingAddress: checkout.shippingAddress,
                 paymentMethod: checkout.paymentMethod,
                 totalPrice: checkout.totalPrice,
