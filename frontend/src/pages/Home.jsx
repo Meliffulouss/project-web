@@ -93,6 +93,7 @@ const Home = () => {
 
     fetchBestSeller();
   }, [dispatch]);
+  
   return (
     <div>
       <Hero />

@@ -178,7 +178,7 @@ const productsSlice = createSlice({
       })
       .addCase(fetchSimilarProducts.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message;
       })
 
       .addCase(updateProduct.pending, (state) => {

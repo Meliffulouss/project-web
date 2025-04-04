@@ -522,7 +522,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5ojR8OCCtG2lUAnPNalPUvSOtQhLPm0NfBQ&s",
+        url: "https://i.pinimg.com/originals/d5/2a/f9/d52af92fa90cc0ed6309a9b488d823db.jpg",
         altText: "High-Waist Skinny Jeans",
       },
     ],
@@ -546,7 +546,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=20",
+        url: "https://preview.redd.it/where-to-buy-high-waisted-wide-leg-smart-ish-trousers-v0-lw0qrefhcgzc1.jpeg?auto=webp&s=8ad06cf5cf878bb60daee6ed83c4b431daef7544",
         altText: "Wide-Leg Trousers Front View",
       },
     ],
@@ -570,7 +570,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=21",
+        url: "https://danceworld.ie/cdn/shop/files/sp_lg.jpg?v=1728492601&width=2134",
         altText: "Stretch Leggings Front View",
       },
     ],
@@ -594,7 +594,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=22",
+        url: "https://i.pinimg.com/736x/9c/04/1e/9c041ecd45d67488500913ce99662cd0.jpg",
         altText: "Pleated Midi Skirt Front View",
       },
     ],
@@ -618,7 +618,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=23",
+        url: "https://m.media-amazon.com/images/I/71uRjQ-ZE1L._AC_UY1100_.jpg",
         altText: "Flared Palazzo Pants Front View",
       },
     ],
@@ -642,7 +642,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=24",
+        url: "https://images.lululemon.com/is/image/lululemon/LW5FB9S_0001_1?size=800,800",
         altText: "High-Rise Joggers Front View",
       },
     ],
@@ -666,7 +666,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=25",
+        url: "https://www.singleprice.com/cdn/shop/files/2A1A5775_cfe60ace-88da-4518-9b56-c7f71fe26495.jpg?v=1693796245&width=666",
         altText: "Paperbag Waist Shorts Front View",
       },
     ],
@@ -690,7 +690,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=26",
+        url: "https://axlandco.imgix.net/AxlandCo/PWA-Products/V21SH302_LTB_2.png?bg=e6e6e6&fm=jpg&auto=format%2Ccompress&format=pjpg&w=300&h=425&fit=cover&rect=440%2C0%2C2120%2C3000&cs=tinysrgb&q=75&dpr=2&ch=Width%2CDPR",
         altText: "Stretch Denim Shorts Front View",
       },
     ],
