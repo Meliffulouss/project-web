@@ -522,7 +522,7 @@ const products = [
     gender: "Women",
     images: [
       {
-        url: "https://picsum.photos/500/500?random=19",
+        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5ojR8OCCtG2lUAnPNalPUvSOtQhLPm0NfBQ&s",
         altText: "High-Waist Skinny Jeans",
       },
     ],
