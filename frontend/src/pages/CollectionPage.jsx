@@ -2,9 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import FilterSidebar from "../components/Products/FilterSidebar";
 import SortOptions from "../components/Products/SortOptions";
-import ProductGrid from"../components/Products/ProductGrid";
+import ProductGrid from "../components/Products/ProductGrid";
 const CollectionPage = () => {
-    const [products, setProducts] = useState([]);
+
+    const { collection } = useParams();
+    const [searchParams] = useSearchParams();
+    const dispatch = useDispatch();
+    const { products, loading, error } = useSelector((state) => state.products);
+    const queryParams = Object.fromEntries([...searchParams]);
+
     const sidebarRef = useRef(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -26,7 +32,7 @@ const CollectionPage = () => {
     }, []);
 
 
-    
+
 
     // ✅ Đưa useEffect vào đúng phạm vi function
     useEffect(() => {
@@ -64,9 +70,9 @@ const CollectionPage = () => {
             <div className="flex-grow p-4">
                 <h2 className="text-2xl uppercase mb-4">All Collection</h2>
                 {/* Sort Options */}
-                <SortOptions/>
+                <SortOptions />
                 {/* Product Grid */}
-                < ProductGrid products={products}/>
+                < ProductGrid products={products} />
             </div>
         </div>
     );
