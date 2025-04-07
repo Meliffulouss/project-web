@@ -33,11 +33,15 @@ export const fetchProductsByFilters = createAsyncThunk(
       if (brand) query.append("brand", brand);
       if (limit) query.append("limit", limit);
 
+
+
+      
       const response = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/products?${query.toString()}`
       );
       return response.data;
     } catch (error) {
+      console.log("ERROR FETCH PRODUCTS:", error); // 👉 thêm dòng này
       return rejectWithValue(error.response?.data || "Something went wrong.");
     }
   }

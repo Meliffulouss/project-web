@@ -10,10 +10,16 @@ import SearchBar from './Searchbar';
 import CartDrawer from '../Layout/CartDrawer';
 import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
+import { useSelector } from 'react-redux';
 const Navbar = () => {
 
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [navDrawerOpen, setNavDrawerOpen] = useState(false);
+
+    const { cart } = useSelector((state) => state.cart);
+
+    const cartItemCount =
+        cart?.products?.reduce((total, product) => total + product.quantity, 0) || 0;
 
     const toggleNavDrawer = () => {
         setNavDrawerOpen(!navDrawerOpen);
@@ -35,25 +41,25 @@ const Navbar = () => {
                 {/* Center - Navigation Links */}
                 <div className="hidden md:flex space-x-6">
                     <Link
-                        to="/collections/all " 
+                        to="/collections/all?gender=Men"
                         className="text-gray-700 hover:text-black text-sm font-medium uppercase"
                     >
                         Men
                     </Link>
                     <Link
-                        to="#"
+                        to="/collections/all?gender=Women"
                         className="text-gray-700 hover:text-black text-sm font-medium uppercase"
                     >
                         Women
                     </Link>
                     <Link
-                        to="#"
+                        to="/collections/all?category=Top Wear"
                         className="text-gray-700 hover:text-black text-sm font-medium uppercase"
                     >
                         Top Wear
                     </Link>
                     <Link
-                        to="#"
+                        to="/collections/all?category=Bottom Wear"
                         className="text-gray-700 hover:text-black text-sm font-medium uppercase"
                     >
                         Bottom Wear
@@ -69,9 +75,11 @@ const Navbar = () => {
                         className='relative hover:text-black'
                     >
                         <HiOutlineShoppingBag className='h-6 w-6 text-gray-700' />
-                        <span className='absolute -top-1 bg-[#FF0000] text-white text-xs rounded-full px-2 py-0.5'>
-                            4
-                        </span>
+                        {cartItemCount > 0 && (
+                            <span className="absolute -top-1  bg-red-500 text-white text-xs rounded-full px-2 py-0.5">
+                                {cartItemCount}
+                            </span>
+                        )}
                     </button>
                     {/* search  */}
                     <div className='overflow-hidden'>
@@ -100,16 +108,16 @@ const Navbar = () => {
                     <div className='p-4'>
                         <h2 className='text-xl font-semibold mb-4'>Menu</h2>
                         <nav className='space-y-4'>
-                            <Link to="#" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
+                            <Link to="/collections/all?gender=Men" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
                                 Men
                             </Link>
-                            <Link to="#" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
+                            <Link to="/collections/all?gender=Women" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
                                 Women
                             </Link>
-                            <Link to="#" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
+                            <Link to="/collections/all?category=Top Wear" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
                                 Top Wear
                             </Link>
-                            <Link to="#" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
+                            <Link to="/collections/all?category=Bottom Wear" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
                                 Bottom Wear
                             </Link>
                         </nav>
