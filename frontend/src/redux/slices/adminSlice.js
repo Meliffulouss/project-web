@@ -44,7 +44,7 @@ export const updateUser = createAsyncThunk(
                 headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
             }
         );
-        return response.data;
+        return response.data.user;
     }
 );
 
@@ -84,15 +84,18 @@ const adminSlice = createSlice({
             })
             .addCase(updateUser.fulfilled, (state, action) => {
                 const updatedUser = action.payload;
+                console.log(action.payload);
+
+
                 const userIndex = state.users.findIndex(
-                    (user) => user.id === updatedUser.id
+                    (user) => user._id === updatedUser._id
                 );
                 if (userIndex !== -1) {
                     state.users[userIndex] = updatedUser;
                 }
             })
             .addCase(deleteUser.fulfilled, (state, action) => {
-                state.users = state.users.filter((user) => user.id !== action.payload);
+                state.users = state.users.filter((user) => user._id !== action.payload);
             })
             .addCase(addUser.pending, (state) => {
                 state.loading = true;
