@@ -8,7 +8,7 @@ const USER_TOKEN = `Bearer ${localStorage.getItem("userToken")}`;
 export const fetchAdminProducts = createAsyncThunk(
     "adminProducts/fetchProducts",
     async () => {
-        const response = await axios.get(`${API_URL}/api/admin/products`, {
+        const response = await axios.get(`${API_URL}/api/products`, {
             headers: {
                 Authorization: USER_TOKEN,
             },
@@ -22,7 +22,7 @@ export const createProduct = createAsyncThunk(
     "adminProducts/createProduct",
     async (productData) => {
         const response = await axios.post(
-            `${API_URL}/api/admin/products`,
+            `${API_URL}/api/products`,
             productData,
             {
                 headers: {
@@ -30,7 +30,7 @@ export const createProduct = createAsyncThunk(
                 },
             }
         );
-        return response;
+        return response.data;;
     }
 );
 
@@ -39,7 +39,7 @@ export const updateProduct = createAsyncThunk(
     "adminProducts/updateProduct",
     async ({ id, productData }) => {
         const response = await axios.put(
-            `${API_URL}/api/admin/products/${id}`,
+            `${API_URL}/api/products/${id}`,
             productData,
             {
                 headers: {
@@ -55,7 +55,7 @@ export const updateProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
     "adminProducts/deleteProduct",
     async (id) => {
-        await axios.delete(`${API_URL}/api/admin/products/${id}`, {
+        await axios.delete(`${API_URL}/api/products/${id}`, {
             headers: { Authorization: USER_TOKEN },
         });
         return id;
@@ -89,7 +89,7 @@ const adminProductSlice = createSlice({
             // Update Product
             .addCase(updateProduct.fulfilled, (state, action) => {
                 const index = state.products.findIndex(
-                    (product) => product.id === action.payload.id
+                    (product) => product._id === action.payload._id
                 );
                 if (index !== -1) {
                     state.products[index] = action.payload; // Assuming action.payload contains the updated product
@@ -98,7 +98,7 @@ const adminProductSlice = createSlice({
             // Delete Product
             .addCase(deleteProduct.fulfilled, (state, action) => {
                 state.products = state.products.filter(
-                    (product) => product.id !== action.payload
+                    (product) => product._id !== action.payload
                 );
             });
     },
