@@ -1,52 +1,32 @@
 import React from 'react'
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import{fetchUserOrders} from"../redux/slices/orderSlice"
 
 const MyOrdersPage = () => {
-    const [orders, setOrders] = useState([]);
-    const navigate =useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { orders, loading, error } = useSelector((state) => state.orders);
 
     useEffect(() => {
-        // Simulate fetching orders
-        setTimeout(() => {
-            const mockOrders = [
-                {
-                    _id: "12345",
-                    createdAt: new Date(),
-                    shippingAddress: { city: "New York", country: "USA" },
-                    orderItems: [
-                        {
-                            name: "Product 1",
-                            image: "https://picsum.photos/500/500?random=1",
-                        },
-                    ],
-                    totalPrice: 100,
-                    isPaid: true,
-                },
-                {
-                    _id: "6789",
-                    createdAt: new Date(),
-                    shippingAddress: { city: "New York", country: "USA" },
-                    orderItems: [
-                        {
-                            name: "Product 2",
-                            image: "https://picsum.photos/500/500?random=2",
-                        },
-                    ],
-                    totalPrice: 100,
-                    isPaid: true,
-                },
+        dispatch(fetchUserOrders());
+    }, [dispatch]);
 
-            ];
-
-            setOrders(mockOrders);
-        }, 1000);
-    }, []);
-
-    const handleRowClick=(orderId) =>{
-        navigate(`/order/${orderId}`)
+    const handleRowClick = (orderId) => {
+        navigate(`/order/${orderId}`);
     };
+
+    if (loading) return <p>Loading ...</p>;
+    if (error) return <p>Error: {error}</p>;
+
+    // ... (rest of your component to display orders)
+
+
+
+
+
 
     return (
         <div className="max-w-7xl mx-auto p-4 sm:p-6">
@@ -67,7 +47,7 @@ const MyOrdersPage = () => {
                     <tbody>
                         {orders.length > 0 ? (
                             orders.map((order) => (
-                                <tr key={order._id} onClick={() => handleRowClick(order._id)}    className="border-b hover:border-gray-50 cursor-pointer">
+                                <tr key={order._id} onClick={() => handleRowClick(order._id)} className="border-b hover:border-gray-50 cursor-pointer">
                                     <td className="py-2 px-2 sm:py-4 sm:px-4">
                                         <img
                                             src={order.orderItems[0].image}

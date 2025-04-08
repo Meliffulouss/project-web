@@ -17,7 +17,8 @@ const Profile = () => {
 
     const handleLogout = () => {
         dispatch(logout());
-        dispatch(clearCart)
+        dispatch(clearCart()); 
+
         navigate("/login");
     }
 
