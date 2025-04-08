@@ -1,37 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import{ clearCart} from "../redux/slices/cartSlice"
 
-const checkout = {
-    _id: "12323",
-    createdAt: new Date(),
-    checkoutItems: [
-        {
-            productId: "1",
-            name: "Jacket",
-            color: "black",
-            size: "M",
-            price: 150,
-            quantity: 1,
-            image: "https://picsum.photos/150?random=1",
-        },
-        {
-            productId: "1",
-            name: "Jacket",
-            color: "black",
-            size: "M",
-            price: 120,
-            quantity: 2,
-            image: "https://picsum.photos/150?random=2",
-        },
 
-    ],
-    shippingAddress: {
-        address: "123 Fashion Street",
-        city: "New York",
-        country: "USA",
-    },
-};
 
 const OrderConfirmationPage = () => {
+    const dispatch =useDispatch();
+    const navigate = useNavigate();
+    const {checkout} = useSelector((state)=>state.checkout);
+    
+    // clear the cart when ther order is confirmed
+    useEffect(() =>{
+        if (checkout && checkout._id) {
+            dispatch(clearCart());
+            localStorage.removeItem("cart");
+        } else{
+            navigate("/my-orders");
+
+
+        }
+    },[checkout,dispatch,navigate]);
 
 
     const calculateEstimatedDelivery = (createdAt) => {
@@ -84,7 +73,7 @@ const OrderConfirmationPage = () => {
                         ))}
                     </div>
                     {/* Payment and delivery in4 */}
-                    <div className=' grid gird-cols-2 gap-8'>{/* payment in4 */}
+                    <div className=' grid grid-cols-2 gap-8'>{/* payment in4 */}
                         <div>
                             <h4 className='text-lg font-semibold mb-2'>Payment</h4>
                             <p className='text-gray-600'> PayPall</p>

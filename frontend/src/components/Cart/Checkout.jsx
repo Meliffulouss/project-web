@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PayPalButton from "./PayPalButton";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckout } from "../../redux/slices/checkoutSlice"
+import axios from 'axios';
 
 
 const Checkout = () => {
@@ -52,7 +53,7 @@ const Checkout = () => {
 
     const handlePaymentSuccess = async (details) => {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/checkout/pay`,
+            const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/pay`,
                 { paymentStatus: "paid", paymentDetails: details }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("userToken")}`,
